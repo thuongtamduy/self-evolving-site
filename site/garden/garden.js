@@ -1,5 +1,5 @@
 (function () {
-  var KEY = "garden-v1", N = 12, HOUR = 3600000;
+  var KEY = "garden-v1", N = 12, HOUR = 3600000, WATER_GAP = 3 * HOUR;
   // age thresholds in ms: seed, sprout, leaf, bud, flower
   var KINDS = {
     blossom: { h: 24, ch: "🌸", en: "Blossom", vi: "Hoa anh đào" },
@@ -27,7 +27,7 @@
       var d = JSON.parse(localStorage.getItem(KEY));
       if (Array.isArray(d)) return d.slice(0, N).map(function (x) {
         if (typeof x === "number") return { t: x, k: "blossom" };
-        return x && typeof x.t === "number" && KINDS[x.k] ? { t: x.t, k: x.k } : null;
+        return x && typeof x.t === "number" && KINDS[x.k] ? { t: x.t, k: x.k, w: typeof x.w === "number" ? x.w : 0 } : null;
       });
     } catch (e) {}
     return [];
@@ -89,9 +89,22 @@
     if (!b) return;
     var i = +b.dataset.i;
     if (data[i]) {
-      status.textContent = i18n.t(stage(data[i]));
+      var p = data[i], kind = KINDS[p.k];
+      if (Date.now() - p.t >= kind.h * HOUR) {
+        status.textContent = i18n.t(stage(p));
+      } else if (Date.now() - (p.w || 0) < WATER_GAP) {
+        var mins = Math.ceil((WATER_GAP - (Date.now() - p.w)) / 60000);
+        status.textContent = i18n.t({ en: "💧 Already watered. Thirsty again in " + mins + " min.", vi: "💧 Đã tưới rồi. " + mins + " phút nữa cây sẽ khát lại." });
+      } else {
+        p.t -= kind.h * HOUR * 0.05;
+        p.w = Date.now();
+        save();
+        status.textContent = i18n.t({ en: "💧 Watered! It grew a little faster.", vi: "💧 Đã tưới! Cây lớn nhanh thêm một chút." });
+        render();
+        var wb = el.children[i]; if (wb) wb.focus();
+      }
     } else {
-      data[i] = { t: Date.now(), k: pick };
+      data[i] = { t: Date.now(), k: pick, w: 0 };
       save();
       status.textContent = i18n.t({ en: "Planted. Be patient.", vi: "Đã gieo. Hãy kiên nhẫn nhé." });
       render();

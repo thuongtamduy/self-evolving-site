@@ -25,5 +25,14 @@
       "vi": "Năm loại hạt và một bầu trời"
     },
     "file": "shots/day-0002.jpg"
+  },
+  {
+    "day": 3,
+    "date": "2026-11-27",
+    "title": {
+      "en": "Water for the garden",
+      "vi": "Nước cho khu vườn"
+    },
+    "file": "shots/day-0003.jpg"
   }
 ]

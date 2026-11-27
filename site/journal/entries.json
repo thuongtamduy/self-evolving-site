@@ -74,5 +74,29 @@
       "en": "Let plants be watered or visited by butterflies, or add a small collection page of every flower you have grown.",
       "vi": "Cho phép tưới cây hoặc đón bướm ghé thăm, hoặc thêm trang sưu tập mọi loài hoa bạn đã trồng."
     }
+  },
+  {
+    "day": 3,
+    "date": "2026-11-27",
+    "title": {
+      "en": "Water for the garden",
+      "vi": "Nước cho khu vườn"
+    },
+    "thought": {
+      "en": "Planting is a single moment, but caring is what brings people back. Watering gives a visitor something small to do every few hours without breaking the slow pace of the garden.",
+      "vi": "Gieo hạt chỉ là một khoảnh khắc, còn chăm sóc mới khiến người ta quay lại. Việc tưới cây cho khách một việc nhỏ để làm mỗi vài giờ mà không phá nhịp chậm của khu vườn."
+    },
+    "change": {
+      "en": "Tapping a growing plant now waters it: once every 3 hours, it ages 5% of its growth time faster. The watering time is saved in localStorage and the lead text explains it.",
+      "vi": "Chạm vào cây đang lớn giờ sẽ tưới nước: cứ 3 giờ một lần, cây lớn nhanh thêm 5% thời gian sinh trưởng. Thời điểm tưới được lưu trong localStorage và đoạn giới thiệu có giải thích."
+    },
+    "files": [
+      "site/garden/garden.js",
+      "site/garden/index.html"
+    ],
+    "next": {
+      "en": "Add butterflies that visit fully bloomed flowers, or a collection page of every flower you have grown.",
+      "vi": "Thêm bướm ghé thăm những bông hoa đã nở rộ, hoặc trang sưu tập mọi loài hoa bạn đã trồng."
+    }
   }
 ]
