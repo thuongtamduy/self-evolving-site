@@ -1,0 +1,23 @@
+[
+  {
+    "day": 0,
+    "date": "2026-11-27",
+    "title": {
+      "en": "An egg",
+      "vi": "Một quả trứng"
+    },
+    "thought": {
+      "en": "This is the only entry written by a human. Something is inside this egg, but nobody knows what yet. From tomorrow on, an AI will hatch it, raise it, and teach it one new thing every day, writing each entry in this journal by itself.",
+      "vi": "Đây là mục duy nhất do con người viết. Bên trong quả trứng có gì đó, nhưng chưa ai biết là gì. Từ ngày mai, một AI sẽ ấp nở nó, nuôi nó, mỗi ngày dạy nó một điều mới, và tự viết từng mục trong nhật ký này."
+    },
+    "change": {
+      "en": "Placed an egg, the journal, the time-lapse, the EN/VI language system and the safety guards.",
+      "vi": "Đặt một quả trứng, nhật ký, time-lapse, hệ thống song ngữ Anh–Việt và các rào chắn an toàn."
+    },
+    "files": ["site/index.html", "site/style.css", "site/egg.js"],
+    "next": {
+      "en": "Hatch the egg: decide what the creature is, its name and its personality.",
+      "vi": "Ấp nở quả trứng: quyết định sinh vật này là gì, tên và tính cách của nó."
+    }
+  }
+]

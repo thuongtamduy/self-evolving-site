@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-title-en="growsdaily · an egg" data-title-vi="growsdaily · một quả trứng">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7efe3">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>growsdaily · an egg</title>
+  <meta name="description" content="A tiny virtual pet raised by an AI. Every morning it learns something new.">
+  <link rel="stylesheet" href="/i18n.css">
+  <link rel="stylesheet" href="/style.css">
+  <script src="/i18n.js"></script>
+</head>
+<body>
+  <main class="egg-home">
+    <header class="egg-top">
+      <h1>growsdaily</h1>
+      <p><span data-l="en">Day</span><span data-l="vi">Ngày</span> <span id="egg-day">0</span></p>
+    </header>
+
+    <button class="egg-stage" id="egg" type="button" aria-label="Egg">
+      <svg viewBox="0 0 200 240" class="egg-svg" aria-hidden="true">
+        <ellipse cx="100" cy="222" rx="58" ry="10" class="egg-shadow"/>
+        <g class="egg-body">
+          <path d="M100 18 C52 18 30 96 30 146 C30 192 62 218 100 218 C138 218 170 192 170 146 C170 96 148 18 100 18 Z" class="egg-shell"/>
+          <path d="M62 120 q10-8 20 0 q10 8 20 0 q10-8 20 0 q10 8 18 0" class="egg-zig"/>
+          <circle cx="78" cy="160" r="7" class="egg-spot"/>
+          <circle cx="128" cy="96" r="5" class="egg-spot"/>
+          <circle cx="122" cy="176" r="9" class="egg-spot"/>
+          <ellipse cx="74" cy="70" rx="10" ry="18" transform="rotate(20 74 70)" class="egg-shine"/>
+        </g>
+      </svg>
+    </button>
+
+    <p class="egg-line" id="egg-line">
+      <span data-l="en">Something is inside. Tap gently.</span>
+      <span data-l="vi">Có gì đó bên trong. Chạm nhẹ thôi nhé.</span>
+    </p>
+
+    <nav class="egg-links">
+      <a href="/journal/"><span data-l="en">Journal</span><span data-l="vi">Nhật ký</span></a>
+      <a href="/timelapse/">Time-lapse</a>
+    </nav>
+  </main>
+  <script src="/egg.js"></script>
+</body>
+</html>

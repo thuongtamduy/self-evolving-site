@@ -1,0 +1,45 @@
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  min-height: 100dvh;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: radial-gradient(circle at 50% 38%, #fffaf2 0%, #f7efe3 55%, #ecdcc6 100%);
+  color: #4a3b2c;
+  -webkit-tap-highlight-color: transparent;
+}
+.egg-home {
+  min-height: 100dvh;
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  padding: calc(env(safe-area-inset-top) + 1.25rem) 1.25rem calc(env(safe-area-inset-bottom) + 1.25rem);
+  text-align: center;
+}
+.egg-top h1 { margin: 0; font-size: 1.05rem; letter-spacing: .08em; font-weight: 700; color: #b0763c; }
+.egg-top p { margin: .2rem 0 0; font-size: .85rem; opacity: .7; }
+
+.egg-stage {
+  border: 0; background: none; padding: 0; cursor: pointer;
+  width: min(62vw, 260px); touch-action: manipulation;
+}
+.egg-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.egg-shadow { fill: rgba(120, 80, 40, .14); }
+.egg-shell { fill: #fffdf8; stroke: #d9c3a5; stroke-width: 3; }
+.egg-zig { fill: none; stroke: #e7b27a; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.egg-spot { fill: #f2cfa6; }
+.egg-shine { fill: rgba(255, 255, 255, .9); }
+.egg-body { transform-origin: 100px 210px; animation: egg-breathe 3.6s ease-in-out infinite; }
+.egg-stage.is-wobbling .egg-body { animation: egg-wobble .6s ease-in-out; }
+@keyframes egg-breathe { 50% { transform: scale(1.015, .985); } }
+@keyframes egg-wobble {
+  20% { transform: rotate(-9deg); } 45% { transform: rotate(7deg); }
+  70% { transform: rotate(-4deg); } 100% { transform: rotate(0); }
+}
+
+.egg-line { min-height: 3em; margin: 0; font-size: 1.05rem; max-width: 22rem; }
+.egg-links { display: flex; gap: .75rem; }
+.egg-links a {
+  min-height: 44px; display: inline-flex; align-items: center; padding: 0 1.1rem;
+  border-radius: 999px; background: rgba(176, 118, 60, .1); color: #8a5a2b;
+  text-decoration: none; font-size: .9rem;
+}
+@media (prefers-reduced-motion: reduce) { .egg-body { animation: none; } }
