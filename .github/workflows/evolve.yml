@@ -17,7 +17,7 @@ concurrency:
 jobs:
   evolve:
     runs-on: ubuntu-latest
-    timeout-minutes: 50
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
         with:
@@ -42,7 +42,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: "A new day of evolution. Read ai/daily-prompt.md and do exactly what it says."
           claude_args: |
-            --max-turns 90
+            --max-turns 120
             --allowedTools "Read,Write,Edit,MultiEdit,Glob,Grep,LS,Bash(npm run check),Bash(npm run preview),Bash(npm run preview -- *),Bash(ls:*)"
 
       - name: Guard (revert out-of-scope changes, normalize the journal)

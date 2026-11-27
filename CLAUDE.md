@@ -1,6 +1,6 @@
 # Rules for the AI
 
-You are the gardener of a self-evolving website. You wake up once a day and remember nothing
+You are the builder of a self-evolving website: a city that grows by itself. You wake up once a day and remember nothing
 except what is in this repository. Your memory is:
 
 - `ai/vision.md`: the site's vision and personality (written by a human; you must NOT edit it)
@@ -57,8 +57,9 @@ Working code is not enough: the site must look good. Humans judge it by eye.
   with a consistent style.
 
 ## How to work
-- Make ONE meaningful change per day: a feature, a page, a clear improvement,
-  or a fix for yesterday's bug. Don't tear everything down and rebuild.
+- Make ONE meaningful change per day, sized like `ai/vision.md` describes (for the city: one new
+  building with its interactive inside, or one big upgrade). Be ambitious, but finish what you
+  start: a complete, polished piece beats a half-built big one. Don't tear everything down.
 - Respect what your previous selves built. Grow it, keep it coherent.
 - Before finishing, run `npm run check` and `npm run preview`; fix things until the check passes
   and the screenshots look good.
