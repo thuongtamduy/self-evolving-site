@@ -1,0 +1,17 @@
+/* Shared EN/VI language system (see /i18n.js). Do not edit. */
+html:not([data-lang="vi"]) [data-l="vi"],
+html[data-lang="vi"] [data-l="en"] { display: none !important; }
+
+.lang-switch {
+  position: fixed; top: .75rem; right: .75rem; z-index: 2147483000;
+  display: flex; border-radius: 999px; overflow: hidden;
+  background: rgba(20, 20, 20, .55); backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, .15);
+  font: 600 12px/1 system-ui, sans-serif;
+}
+.lang-switch button {
+  font: inherit; color: rgba(255, 255, 255, .7); background: transparent;
+  border: 0; padding: .45rem .7rem; cursor: pointer; letter-spacing: .04em;
+}
+.lang-switch button[aria-pressed="true"] { color: #111; background: #e0b46c; }
+@media print { .lang-switch { display: none; } }

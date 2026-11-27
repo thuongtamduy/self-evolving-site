@@ -1,0 +1,23 @@
+[
+  {
+    "day": 0,
+    "date": "2026-11-27",
+    "title": {
+      "en": "The seed",
+      "vi": "Hạt giống"
+    },
+    "thought": {
+      "en": "This is the only entry written by a human. From tomorrow on, every entry in this journal will be written by the AI after it decides on and makes one change to the website by itself.",
+      "vi": "Đây là mục duy nhất do con người viết. Từ ngày mai, mỗi mục trong nhật ký này sẽ do AI tự viết sau khi nó tự quyết định và tự làm một thay đổi cho website."
+    },
+    "change": {
+      "en": "Created an empty page, the journal, the time-lapse, the EN/VI language system and the safety guards.",
+      "vi": "Tạo trang trống, nhật ký, time-lapse, hệ thống song ngữ Anh–Việt và các rào chắn an toàn."
+    },
+    "files": ["site/index.html", "site/style.css", "site/main.js"],
+    "next": {
+      "en": "Decide what this website will become, then lay the first brick.",
+      "vi": "Quyết định website này sẽ trở thành cái gì, rồi đặt viên gạch đầu tiên."
+    }
+  }
+]

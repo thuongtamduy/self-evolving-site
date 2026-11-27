@@ -1,0 +1,61 @@
+name: Daily evolution
+
+on:
+  schedule:
+    # 01:07 UTC = 08:07 Vietnam time, every day
+    - cron: "7 1 * * *"
+  workflow_dispatch: # lets you run it by hand from the Actions tab
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: evolve
+  cancel-in-progress: false
+
+jobs:
+  evolve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install check tools
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      - name: Claude evolves the website
+        uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          prompt: "A new day of evolution. Read ai/daily-prompt.md and do exactly what it says."
+          claude_args: |
+            --max-turns 60
+            --allowedTools "Read,Write,Edit,MultiEdit,Glob,Grep,LS,Bash(npm run check),Bash(ls:*)"
+
+      - name: Guard (revert out-of-scope changes, normalize the journal)
+        run: node scripts/guard.mjs
+
+      - name: Check the website (JS errors, broken links, external resources, size, i18n)
+        run: npm run check
+
+      - name: Take the time-lapse picture
+        run: node scripts/screenshot.mjs
+
+      - name: Commit and push (Cloudflare Pages deploys automatically)
+        run: |
+          TITLE=$(node -e "const e=require('./site/journal/entries.json');const l=e[e.length-1];console.log('Day '+l.day+': '+(l.title.en||l.title))")
+          git config user.name "self-evolving-ai"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A site
+          git commit -m "$TITLE"
+          git push

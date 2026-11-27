@@ -1,0 +1,11 @@
+{
+  "name": "self-evolving-site",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.65.1"
+  }
+}
