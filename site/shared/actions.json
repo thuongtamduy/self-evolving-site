@@ -1,7 +1,0 @@
-{
-  "actions": {
-    "pet": { "cooldown": 10 },
-    "cheer": { "cooldown": 30 },
-    "feed": { "cooldown": 120 }
-  }
-}
