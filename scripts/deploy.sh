@@ -3,7 +3,7 @@
 # Creates the Pages project on the first run. Skips quietly if the Cloudflare secrets are not set.
 set -euo pipefail
 
-PROJECT="${PAGES_PROJECT:-self-evolving-site}"
+PROJECT="${PAGES_PROJECT:-growsdaily}"
 WRANGLER="npx --yes wrangler@4"
 
 if [[ -z "${CLOUDFLARE_API_TOKEN:-}" || -z "${CLOUDFLARE_ACCOUNT_ID:-}" ]]; then

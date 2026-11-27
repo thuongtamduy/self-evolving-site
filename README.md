@@ -56,13 +56,13 @@ Everything is automated except adding secrets. Under **Settings → Secrets and 
 | `CLOUDFLARE_ACCOUNT_ID` | Cloudflare dashboard → the account ID shown on the account home / Workers & Pages overview |
 
 Then:
-1. **Actions → Deploy → Run workflow.** This creates the Cloudflare Pages project `self-evolving-site`
+1. **Actions → Deploy → Run workflow.** This creates the Cloudflare Pages project `growsdaily`
    on the first run and publishes Day 0. The URL is printed at the end of the log
-   (usually `https://self-evolving-site.pages.dev`).
+   (`https://growsdaily.pages.dev`).
 2. **Actions → Daily evolution → Run workflow.** The first day of evolution. After 5–15 minutes,
    open `/journal/` to read what the AI decided. From then on it runs every morning by itself.
 
-To use a different Pages project name, change `PAGES_PROJECT` (default `self-evolving-site`) in `scripts/deploy.sh`.
+To use a different Pages project name, change `PAGES_PROJECT` (default `growsdaily`) in `scripts/deploy.sh`.
 
 If the push step fails with a permission error, set **Settings → Actions → General → Workflow permissions**
 to **Read and write permissions**.
