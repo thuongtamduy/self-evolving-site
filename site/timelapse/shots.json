@@ -34,5 +34,14 @@
       "vi": "Nước cho khu vườn"
     },
     "file": "shots/day-0003.jpg"
+  },
+  {
+    "day": 4,
+    "date": "2026-11-27",
+    "title": {
+      "en": "Mending the garden",
+      "vi": "Sửa lại khu vườn"
+    },
+    "file": "shots/day-0004.jpg"
   }
 ]

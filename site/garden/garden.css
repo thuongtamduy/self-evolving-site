@@ -1,20 +1,32 @@
-.garden-page { max-width: 34rem; margin: 0 auto; padding: 8vh 1.5rem 4rem; text-align: center; }
-.plots { display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem; margin: 2rem 0 1rem; }
-.plot {
-  aspect-ratio: 1; font-size: 2rem; cursor: pointer;
-  background: #2a2119; border: 1px solid #4a3a2a; border-radius: 12px; color: #d9e2dc;
-  display: flex; align-items: center; justify-content: center;
-  transition: transform .15s, background .2s;
+.garden-page { max-width: 36rem; margin: 0 auto; padding: 8vh 1.25rem 4rem; text-align: center; }
+.garden-sky { font-size: .95rem; margin: 1rem 0 0; color: #a9b5ae; }
+.garden-seeds { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: 1.25rem 0 0; }
+.garden-seed {
+  display: inline-flex; align-items: center; gap: .4rem; cursor: pointer; font: inherit; font-size: .9rem;
+  background: rgba(42,33,25,.7); border: 1px solid #4a3a2a; border-radius: 999px; color: #d9e2dc;
+  padding: .4rem .85rem; white-space: nowrap; transition: border-color .2s, background .2s;
 }
-.plot:hover, .plot:focus-visible { transform: translateY(-2px); background: #34291f; outline: none; border-color: #c9a46a; }
-.plot.empty { font-size: 1rem; color: #6d5a45; }
-.status { min-height: 1.6em; font-size: .95rem; }
-@media (prefers-reduced-motion: reduce) { .plot { transition: none; } }
-
-.sky { font-size: .95rem; margin-top: 1rem; }
-.seeds { display: flex; flex-wrap: wrap; gap: .4rem; justify-content: center; margin-top: 1rem; }
-.seed { cursor: pointer; background: #2a2119; border: 1px solid #4a3a2a; border-radius: 999px; color: #d9e2dc; padding: .35rem .8rem; font-size: .9rem; }
-.seed.on { border-color: #c9a46a; background: #3b2e20; }
+.garden-seed:hover, .garden-seed:focus-visible { border-color: #c9a46a; outline: none; }
+.garden-seed.on { border-color: #c9a46a; background: #3b2e20; color: #fff; }
+.garden-seed-h { color: #c9a46a; font-size: .8rem; }
+.garden-plots {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem; margin: 1.75rem 0 1rem;
+  padding: .9rem; border-radius: 18px; background: linear-gradient(#2b2118, #1d160f); border: 1px solid #3a2d1f;
+}
+.garden-plot {
+  aspect-ratio: 1; font-size: 2rem; cursor: pointer; padding: 0; position: relative;
+  background: radial-gradient(ellipse at 50% 60%, #3a2c1f, #2a2018 75%); border: 1px solid #4a3a2a; border-radius: 14px;
+  color: #d9e2dc; display: flex; align-items: center; justify-content: center;
+  transition: transform .15s, border-color .2s;
+}
+.garden-plot:hover, .garden-plot:focus-visible { transform: translateY(-2px); border-color: #c9a46a; outline: none; }
+.garden-empty { background: rgba(0,0,0,.18); border: 1px dashed #4a3a2a; }
+.garden-mound { width: 46%; height: 22%; border-radius: 50%; background: radial-gradient(ellipse at 50% 30%, #4a3826, #2f2418); box-shadow: 0 2px 0 rgba(0,0,0,.3); opacity: .8; }
+.garden-bean { width: 14px; height: 19px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: #c9a46a; box-shadow: 0 0 14px rgba(201,164,106,.35); }
+.garden-status { min-height: 1.6em; font-size: .95rem; }
+@media (prefers-reduced-motion: reduce) { .garden-plot, .garden-seed { transition: none; } }
+@media (max-width: 420px) { .garden-plots { gap: .4rem; padding: .6rem; } .garden-plot { font-size: 1.6rem; } }
 body.sky-day { background-image: linear-gradient(#1f2a24, #14110d 60%); }
 body.sky-dusk { background-image: linear-gradient(#3a2a1c, #14110d 60%); }
 body.sky-night { background-image: linear-gradient(#0d1220, #0b0a0a 60%); }
+.garden-lead { font-size: 1rem; color: #e6ede8; }

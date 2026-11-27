@@ -42,16 +42,20 @@
     seeds.textContent = "";
     ORDER.forEach(function (k) {
       var b = document.createElement("button");
-      b.className = "seed" + (k === pick ? " on" : "");
+      b.className = "garden-seed" + (k === pick ? " on" : "");
       b.dataset.k = k;
       b.setAttribute("role", "radio");
       b.setAttribute("aria-checked", k === pick ? "true" : "false");
-      b.textContent = KINDS[k].ch + " " + i18n.t(KINDS[k]) + " · " + KINDS[k].h + "h";
+      b.innerHTML = "";
+      var ic = document.createElement("span"); ic.className = "garden-seed-ch"; ic.textContent = KINDS[k].ch;
+      var nm = document.createElement("span"); nm.className = "garden-seed-name"; nm.textContent = i18n.t(KINDS[k]);
+      var hh = document.createElement("span"); hh.className = "garden-seed-h"; hh.textContent = KINDS[k].h + "h";
+      b.appendChild(ic); b.appendChild(nm); b.appendChild(hh);
       seeds.appendChild(b);
     });
   }
   seeds.addEventListener("click", function (e) {
-    var b = e.target.closest(".seed");
+    var b = e.target.closest(".garden-seed");
     if (!b) return;
     pick = b.dataset.k;
     renderSeeds();
@@ -69,23 +73,24 @@
     el.textContent = "";
     for (var i = 0; i < N; i++) {
       var b = document.createElement("button");
-      b.className = "plot";
+      b.className = "garden-plot";
       b.dataset.i = i;
       var t = data[i];
       if (t) {
         var s = stage(t);
-        b.textContent = s.ch;
+        if (s.ch === "🌰") b.appendChild(document.createElement("span")).className = "garden-bean";
+        else b.textContent = s.ch;
         b.setAttribute("aria-label", i18n.t(s));
       } else {
-        b.classList.add("empty");
-        b.textContent = "+";
+        b.classList.add("garden-empty");
+        b.appendChild(document.createElement("span")).className = "garden-mound";
         b.setAttribute("aria-label", i18n.t({ en: "Empty plot, plant a seed", vi: "Ô đất trống, gieo hạt" }));
       }
       el.appendChild(b);
     }
   }
   el.addEventListener("click", function (e) {
-    var b = e.target.closest(".plot");
+    var b = e.target.closest(".garden-plot");
     if (!b) return;
     var i = +b.dataset.i;
     if (data[i]) {
