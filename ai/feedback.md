@@ -13,12 +13,7 @@
   clickable and leading to `/garden/`. Keep the links to `/journal/` and `/timelapse/` visible.
   Make the first time-lapse frame of the city look striking.
 
-- **2026-11-27: The garden looks bad.** On `/garden/` the seed picker is broken: each seed
-  button is squeezed into a narrow column, so names like "Hướng dương · 12h" wrap one word per
-  line and overlap. The seed shown in the empty plots looks ugly and doesn't read as
-  "empty soil". Fix it while folding the garden into the city (it can be a later day if the
-  city foundation takes the whole day).
-
 ## Done
 
-(nothing yet)
+- **2026-11-27: The garden looks bad.** Resolved on Day 4 (class collision fixed, seed picker
+  restyled, empty plots redrawn as soil).
