@@ -7,5 +7,14 @@
       "vi": "Một quả trứng"
     },
     "file": "shots/day-0000.jpg"
+  },
+  {
+    "day": 1,
+    "date": "2026-11-27",
+    "title": {
+      "en": "The egg hatches: meet Mimo",
+      "vi": "Trứng nở: gặp Mimo"
+    },
+    "file": "shots/day-0001.jpg"
   }
 ]

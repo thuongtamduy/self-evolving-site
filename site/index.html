@@ -1,47 +1,100 @@
 <!DOCTYPE html>
-<html lang="en" data-title-en="growsdaily · an egg" data-title-vi="growsdaily · một quả trứng">
+<html lang="en" data-title-en="growsdaily · Mimo the Sproutling" data-title-vi="growsdaily · Mimo Mầm Mầm">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f7efe3">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <title>growsdaily · an egg</title>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <title>growsdaily · Mimo the Sproutling</title>
   <meta name="description" content="A tiny virtual pet raised by an AI. Every morning it learns something new.">
   <link rel="stylesheet" href="/i18n.css">
   <link rel="stylesheet" href="/style.css">
   <script src="/i18n.js"></script>
 </head>
 <body>
-  <main class="egg-home">
-    <header class="egg-top">
+  <main class="pet-home">
+    <header class="pet-top">
       <h1>growsdaily</h1>
-      <p><span data-l="en">Day</span><span data-l="vi">Ngày</span> <span id="egg-day">0</span></p>
+      <p><span id="pet-name">Mimo</span> · <span data-l="en">Day</span><span data-l="vi">Ngày</span> <span id="pet-day">1</span></p>
     </header>
 
-    <button class="egg-stage" id="egg" type="button" aria-label="Egg">
-      <svg viewBox="0 0 200 240" class="egg-svg" aria-hidden="true">
-        <ellipse cx="100" cy="222" rx="58" ry="10" class="egg-shadow"/>
-        <g class="egg-body">
-          <path d="M100 18 C52 18 30 96 30 146 C30 192 62 218 100 218 C138 218 170 192 170 146 C170 96 148 18 100 18 Z" class="egg-shell"/>
-          <path d="M62 120 q10-8 20 0 q10 8 20 0 q10-8 20 0 q10 8 18 0" class="egg-zig"/>
-          <circle cx="78" cy="160" r="7" class="egg-spot"/>
-          <circle cx="128" cy="96" r="5" class="egg-spot"/>
-          <circle cx="122" cy="176" r="9" class="egg-spot"/>
-          <ellipse cx="74" cy="70" rx="10" ry="18" transform="rotate(20 74 70)" class="egg-shine"/>
-        </g>
-      </svg>
-    </button>
+    <section class="pet-world" aria-live="polite">
+      <div class="pet-bars" aria-hidden="true">
+        <div class="pet-bar"><i id="bar-food"></i></div>
+        <div class="pet-bar pet-bar-love"><i id="bar-love"></i></div>
+      </div>
+      <p class="pet-bubble" id="pet-bubble"></p>
+      <button class="pet-stage" id="pet" type="button" aria-label="Mimo">
+        <svg viewBox="0 0 240 240" class="pet-svg" aria-hidden="true">
+          <ellipse cx="120" cy="222" rx="62" ry="9" class="pet-shadow"/>
+          <g class="pet-all">
+            <g class="pet-bodygrp">
+              <g class="pet-sprout">
+                <path d="M120 58 C118 44 120 36 124 30" class="pet-stem"/>
+                <path d="M124 34 C124 14 146 6 164 10 C164 28 146 40 124 34 Z" class="pet-leaf"/>
+                <path d="M121 40 C120 26 104 18 90 22 C90 36 104 46 121 40 Z" class="pet-leaf pet-leaf2"/>
+                <g class="pet-flower">
+                  <circle cx="124" cy="26" r="6" fill="#ffd36e"/>
+                  <g fill="#ff9fb6"><circle cx="124" cy="14" r="6"/><circle cx="136" cy="22" r="6"/><circle cx="132" cy="36" r="6"/><circle cx="116" cy="36" r="6"/><circle cx="112" cy="22" r="6"/></g>
+                  <circle cx="124" cy="26" r="5" fill="#ffd36e"/>
+                </g>
+              </g>
+              <ellipse cx="78" cy="196" rx="18" ry="11" class="pet-foot"/>
+              <ellipse cx="162" cy="196" rx="18" ry="11" class="pet-foot"/>
+              <ellipse cx="50" cy="146" rx="12" ry="18" transform="rotate(25 50 146)" class="pet-arm pet-arm-l"/>
+              <ellipse cx="190" cy="146" rx="12" ry="18" transform="rotate(-25 190 146)" class="pet-arm pet-arm-r"/>
+              <path d="M120 56 C62 56 36 104 36 150 C36 192 70 212 120 212 C170 212 204 192 204 150 C204 104 178 56 120 56 Z" class="pet-body"/>
+              <ellipse cx="120" cy="170" rx="50" ry="36" class="pet-belly"/>
+              <ellipse cx="80" cy="96" rx="14" ry="8" transform="rotate(-30 80 96)" class="pet-shine"/>
+              <circle cx="66" cy="142" r="11" class="pet-cheek"/>
+              <circle cx="174" cy="142" r="11" class="pet-cheek"/>
+              <g class="pet-eyes">
+                <g class="pet-eye pet-eye-open"><ellipse cx="90" cy="124" rx="9" ry="12" class="pet-pupil"/><circle cx="93" cy="119" r="3.2" fill="#fff"/><ellipse cx="150" cy="124" rx="9" ry="12" class="pet-pupil"/><circle cx="153" cy="119" r="3.2" fill="#fff"/></g>
+                <g class="pet-eye pet-eye-shut"><path d="M80 126 q10 -9 20 0 M140 126 q10 -9 20 0" class="pet-line"/></g>
+                <g class="pet-eye pet-eye-sleep"><path d="M80 124 q10 9 20 0 M140 124 q10 9 20 0" class="pet-line"/></g>
+              </g>
+              <path d="M76 104 l22 5 M164 104 l-22 5" class="pet-line pet-brows"/>
+              <path d="M108 148 q12 12 24 0" class="pet-line pet-mouth pet-mouth-smile"/>
+              <path d="M104 146 q16 20 32 0 Z" class="pet-mouth-open pet-mouth"/>
+              <path d="M110 152 h20" class="pet-line pet-mouth pet-mouth-flat"/>
+              <ellipse cx="120" cy="156" rx="8" ry="9" class="pet-mouth-nom pet-mouth"/>
+            </g>
+          </g>
+        </svg>
+        <span class="pet-zzz" aria-hidden="true">z<b>z</b><b>z</b></span>
+        <span class="pet-fx" id="pet-fx" aria-hidden="true"></span>
+      </button>
+    </section>
 
-    <p class="egg-line" id="egg-line">
-      <span data-l="en">Something is inside. Tap gently.</span>
-      <span data-l="vi">Có gì đó bên trong. Chạm nhẹ thôi nhé.</span>
-    </p>
+    <section class="pet-crowd" id="pet-crowd" hidden>
+      <div class="pet-crowd-row">
+        <span class="pet-crowd-title"><span data-l="en">Everyone together</span><span data-l="vi">Cả thế giới cùng nuôi</span></span>
+        <span class="pet-crowd-total"><b id="crowd-total">0</b> <span data-l="en">cares</span><span data-l="vi">lần chăm</span></span>
+      </div>
+      <div class="pet-goal">
+        <div class="pet-goal-bar"><i id="goal-bar"></i></div>
+        <p id="goal-text"></p>
+      </div>
+      <p class="pet-recent" id="crowd-recent"></p>
+    </section>
 
-    <nav class="egg-links">
+    <div class="pet-actions">
+      <button type="button" class="pet-btn" id="btn-feed">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 9c-6 0-10 4-10 10 0 5 4 8 10 8s10-3 10-8c0-6-4-10-10-10z" fill="#e25b6e"/><path d="M16 9c0-3 2-5 5-5-1 3-2 5-5 5z" fill="#6fbf73"/><circle cx="12" cy="17" r="1.3" fill="#ffd6dc"/><circle cx="19" cy="15" r="1.3" fill="#ffd6dc"/><circle cx="16" cy="22" r="1.3" fill="#ffd6dc"/></svg>
+        <span data-l="en">Feed</span><span data-l="vi">Cho ăn</span>
+      </button>
+      <button type="button" class="pet-btn" id="btn-cheer" hidden>
+        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3l3.7 8 8.3 1-6.2 5.7 1.8 8.5L16 22l-7.6 4.2 1.8-8.5L4 12l8.3-1z" fill="#ffc94d" stroke="#e0a21f" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <span data-l="en">Cheer</span><span data-l="vi">Cổ vũ</span>
+      </button>
+    </div>
+
+    <nav class="pet-links">
       <a href="/journal/"><span data-l="en">Journal</span><span data-l="vi">Nhật ký</span></a>
       <a href="/timelapse/">Time-lapse</a>
     </nav>
   </main>
-  <script src="/egg.js"></script>
+  <script src="/pet/pet.js"></script>
 </body>
 </html>
