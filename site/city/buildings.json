@@ -1,0 +1,31 @@
+{
+  "name": { "en": "growsdaily", "vi": "growsdaily" },
+  "grid": { "cols": 14, "rows": 14 },
+  "districts": [
+    { "id": "greenfield", "name": { "en": "Greenfield", "vi": "Khu Xanh" }, "kind": "park", "area": [2.6, 2.6, 7.4, 7.4],
+      "story": { "en": "The first corner of the city to wake up. It began as one seed.", "vi": "Góc đầu tiên của thành phố thức dậy. Nó bắt đầu từ một hạt giống." } }
+  ],
+  "streets": [
+    { "id": "seed-street", "name": { "en": "Seed Street", "vi": "Đường Hạt Giống" } },
+    { "id": "first-light-avenue", "name": { "en": "First Light Avenue", "vi": "Đại lộ Bình Minh" } },
+    { "id": "morning-river", "name": { "en": "Morning River", "vi": "Sông Sớm" } }
+  ],
+  "lots": [
+    { "x": 0.8, "y": 10.2, "w": 3, "h": 3 },
+    { "x": 4.6, "y": 10.2, "w": 3, "h": 3 },
+    { "x": 12.4, "y": 3.2, "w": 1.2, "h": 3 },
+    { "x": 9.6, "y": 10.2, "w": 0.6, "h": 0.6, "hidden": true }
+  ],
+  "buildings": [
+    {
+      "id": "garden",
+      "name": { "en": "The Garden", "vi": "Khu vườn" },
+      "district": "greenfield",
+      "kind": "park",
+      "x": 3, "y": 3, "w": 4, "h": 4,
+      "built": 1,
+      "page": "/garden/",
+      "blurb": { "en": "Plant a seed and come back to watch it grow.", "vi": "Gieo một hạt rồi quay lại xem nó lớn." }
+    }
+  ]
+}

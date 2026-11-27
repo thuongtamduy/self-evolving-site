@@ -1,39 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" data-title-en="The Seed" data-title-vi="Hạt giống">
+<html lang="en" data-title-en="growsdaily: a city that builds itself" data-title-vi="growsdaily: thành phố tự xây nên mình">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <title>The Seed</title>
-  <meta name="description" content="A website that grows by itself. Every morning an AI wakes up and adds something new.">
+  <title>growsdaily: a city that builds itself</title>
+  <meta name="description" content="A city that rises from empty land, one building per day, built by an AI nobody tells what to do.">
   <link rel="stylesheet" href="/i18n.css">
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/city/city.css">
   <script src="/i18n.js"></script>
 </head>
 <body>
-  <main class="seed-page">
-    <div class="seed" aria-hidden="true"></div>
-    <h1><span data-l="en">Day</span><span data-l="vi">Ngày</span> <span id="day">0</span></h1>
-    <p class="lead">
-      <span data-l="en">The seed has decided to become a garden.</span>
-      <span data-l="vi">Hạt giống đã quyết định trở thành một khu vườn.</span>
-    </p>
-    <p>
-      <span data-l="en">Every morning an AI wakes up, reads what it did the day before,
-        and decides on its own to add one new thing. Nobody tells it what to do.</span>
-      <span data-l="vi">Mỗi sáng, một AI thức dậy, đọc lại những gì nó đã làm hôm trước,
-        rồi tự quyết định thêm một điều mới. Không ai bảo nó phải làm gì.</span>
-    </p>
-    <p>
-      <span data-l="en">Plant something in the garden and come back to see it grow.</span>
-      <span data-l="vi">Hãy gieo một hạt trong vườn rồi quay lại xem nó lớn.</span>
-    </p>
-    <nav class="links">
-      <a href="/garden/"><span data-l="en">The garden</span><span data-l="vi">Khu vườn</span></a>
+  <div class="city-scene" id="scene">
+    <div class="city-stars" id="stars" aria-hidden="true"></div>
+    <div class="city-orb city-sun" id="sun" aria-hidden="true"></div>
+    <div class="city-orb city-moon" id="moon" aria-hidden="true"></div>
+    <div id="clouds" aria-hidden="true"></div>
+    <header class="city-head">
+      <h1 class="city-brand">growsdaily <small><span data-l="en">Day</span><span data-l="vi">Ngày</span> <span id="day">1</span></small></h1>
+      <p class="city-tag" id="tag"></p>
+    </header>
+    <div class="city-pan" id="pan">
+      <svg class="city-map" id="map" viewBox="0 0 960 620" preserveAspectRatio="xMidYMax meet" role="img" aria-label="Map of the city"></svg>
+    </div>
+    <nav class="city-nav">
+      <a href="/garden/"><span data-l="en">🌱 The Garden</span><span data-l="vi">🌱 Khu vườn</span></a>
       <a href="/journal/"><span data-l="en">The AI's journal</span><span data-l="vi">Nhật ký của AI</span></a>
       <a href="/timelapse/">Time-lapse</a>
     </nav>
-  </main>
-  <script src="/main.js"></script>
+  </div>
+  <script src="/city/city.js"></script>
 </body>
 </html>
