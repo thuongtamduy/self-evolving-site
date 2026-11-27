@@ -3,7 +3,7 @@
 A website that grows by itself. Every morning at 08:07 Vietnam time, GitHub Actions wakes Claude up.
 Claude reads the vision, its own journal and the source code, **decides on its own** what to change,
 writes the code, checks it, and writes a journal entry in English and Vietnamese.
-The pipeline takes a time-lapse picture, commits, and Cloudflare Pages deploys.
+The pipeline takes a time-lapse picture, commits, and deploys to Cloudflare Pages with Wrangler.
 
 Nobody tells it what to do.
 
@@ -15,7 +15,8 @@ GitHub Actions (cron, every morning)
   └─ check.mjs       opens every page in real Chrome (desktop/EN + mobile/VI): JS errors,
                      broken links, external resources, size, overflow, both languages present
   └─ screenshot.mjs  pictures the home page for the time-lapse
-  └─ git push   →    Cloudflare Pages deploys to *.pages.dev
+  └─ git push
+  └─ deploy.sh       wrangler pages deploy → *.pages.dev (creates the project on first run)
 ```
 
 If any step fails, **nothing is published** that day and the live site stays as it was.
@@ -46,33 +47,30 @@ cannot load anything from outside, even if the AI tries to.
 
 ## Setup
 
-### 1. Claude token
-On your own machine, install Claude Code (https://code.claude.com) and run:
+Everything is automated except adding secrets. Under **Settings → Secrets and variables → Actions → New repository secret**, add:
 
-```bash
-claude setup-token
-```
+| Secret | Where to get it |
+|---|---|
+| `CLAUDE_CODE_OAUTH_TOKEN` | Run `claude setup-token` on your machine (install Claude Code from https://code.claude.com) |
+| `CLOUDFLARE_API_TOKEN` | Cloudflare dashboard → My Profile → API Tokens → Create token, with **Account → Cloudflare Pages → Edit** |
+| `CLOUDFLARE_ACCOUNT_ID` | Cloudflare dashboard → the account ID shown on the account home / Workers & Pages overview |
 
-Copy the token it prints.
+Then:
+1. **Actions → Deploy → Run workflow.** This creates the Cloudflare Pages project `self-evolving-site`
+   on the first run and publishes Day 0. The URL is printed at the end of the log
+   (usually `https://self-evolving-site.pages.dev`).
+2. **Actions → Daily evolution → Run workflow.** The first day of evolution. After 5–15 minutes,
+   open `/journal/` to read what the AI decided. From then on it runs every morning by itself.
 
-### 2. Repository settings
-- **Settings → Secrets and variables → Actions → New repository secret**
-  - Name: `CLAUDE_CODE_OAUTH_TOKEN`
-  - Secret: the token
-- **Settings → Actions → General → Workflow permissions** → **Read and write permissions** → Save
+To use a different Pages project name, change `PAGES_PROJECT` (default `self-evolving-site`) in `scripts/deploy.sh`.
 
-### 3. Cloudflare Pages
-1. https://dash.cloudflare.com → **Workers & Pages → Create → Pages → Connect to Git**
-   (may be labelled "Import an existing Git repository").
-2. Give Cloudflare access to this repository and select it.
-3. Build settings:
-   - Framework preset: **None**
-   - Build command: *(empty)*
-   - Build output directory: **`site`**
-4. **Save and Deploy**. You get `https://<project>.pages.dev`; every push to `main` redeploys.
+If the push step fails with a permission error, set **Settings → Actions → General → Workflow permissions**
+to **Read and write permissions**.
 
-### 4. First day
-**Actions → Daily evolution → Run workflow**. After 5–15 minutes, open `/journal/` to read what the AI decided.
+### How deploys happen
+- The daily evolution deploys at the end of its own run.
+- `Deploy` runs whenever a human pushes changes under `site/` to `main`, or on demand.
+- If the Cloudflare secrets are missing, deploys are skipped with a warning instead of failing.
 
 ---
 
