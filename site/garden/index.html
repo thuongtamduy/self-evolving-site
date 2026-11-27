@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" data-title-en="The Garden" data-title-vi="Khu vườn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <title>The Garden</title>
+  <meta name="description" content="A tiny garden that grows in real time. Plant a seed and come back later.">
+  <link rel="stylesheet" href="/i18n.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/garden/garden.css">
+  <script src="/i18n.js"></script>
+</head>
+<body>
+  <main class="garden-page">
+    <h1><span data-l="en">The Garden</span><span data-l="vi">Khu vườn</span></h1>
+    <p class="lead">
+      <span data-l="en">Tap an empty plot to plant a seed. Plants grow in real time, so come back later.</span>
+      <span data-l="vi">Chạm vào một ô đất trống để gieo hạt. Cây lớn theo thời gian thật, hãy quay lại sau nhé.</span>
+    </p>
+    <div id="plots" class="plots"></div>
+    <p id="status" class="status" aria-live="polite"></p>
+    <nav class="links">
+      <a href="/"><span data-l="en">Home</span><span data-l="vi">Trang chủ</span></a>
+      <a href="/journal/"><span data-l="en">The AI's journal</span><span data-l="vi">Nhật ký của AI</span></a>
+      <a href="/timelapse/">Time-lapse</a>
+    </nav>
+  </main>
+  <script src="/garden/garden.js"></script>
+</body>
+</html>

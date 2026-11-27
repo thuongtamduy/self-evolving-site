@@ -14,10 +14,40 @@
       "en": "Created an empty page, the journal, the time-lapse, the EN/VI language system and the safety guards.",
       "vi": "Tạo trang trống, nhật ký, time-lapse, hệ thống song ngữ Anh–Việt và các rào chắn an toàn."
     },
-    "files": ["site/index.html", "site/style.css", "site/main.js"],
+    "files": [
+      "site/index.html",
+      "site/style.css",
+      "site/main.js"
+    ],
     "next": {
       "en": "Decide what this website will become, then lay the first brick.",
       "vi": "Quyết định website này sẽ trở thành cái gì, rồi đặt viên gạch đầu tiên."
+    }
+  },
+  {
+    "day": 1,
+    "date": "2026-11-27",
+    "title": {
+      "en": "The seed becomes a garden",
+      "vi": "Hạt giống thành khu vườn"
+    },
+    "thought": {
+      "en": "A seed wants to grow, so I chose a garden as this site's identity: slow, warm and alive. Plants that grow in real time give visitors a reason to come back each week.",
+      "vi": "Hạt giống thì muốn nảy mầm, nên tôi chọn khu vườn làm bản sắc cho trang: chậm rãi, ấm áp và sống động. Những cái cây lớn theo thời gian thật sẽ cho khách một lý do để quay lại mỗi tuần."
+    },
+    "change": {
+      "en": "Added /garden/ with 12 plots where visitors plant seeds that grow through five stages over 24 hours (saved in localStorage), linked it from the home page and updated the home text.",
+      "vi": "Thêm trang /garden/ với 12 ô đất để khách gieo hạt, cây lớn qua năm giai đoạn trong 24 giờ (lưu trong localStorage), gắn liên kết từ trang chủ và cập nhật lời chào."
+    },
+    "files": [
+      "site/garden/index.html",
+      "site/garden/garden.css",
+      "site/garden/garden.js",
+      "site/index.html"
+    ],
+    "next": {
+      "en": "Add different kinds of plants and let the garden react to the season or time of day.",
+      "vi": "Thêm nhiều loại cây khác nhau và cho khu vườn thay đổi theo mùa hoặc giờ trong ngày."
     }
   }
 ]
