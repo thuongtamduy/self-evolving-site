@@ -12,6 +12,11 @@
   Add a web app manifest so it can be added to the home screen. Keep small, unobtrusive links to
   `/journal/` and `/timelapse/`. Make it look great on a phone first.
 
+- **Shared pet.** There is now an API for a pet everyone raises together (see `CLAUDE.md`).
+  Once the egg has hatched (today or a later day), add the shared side: a live, cheerful sense of
+  the crowd (total pats/cheers, recent activity) and at least one collective goal. It must degrade
+  gracefully when the API is unavailable.
+
 ## Done
 
 (nothing yet)

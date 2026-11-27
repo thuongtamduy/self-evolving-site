@@ -40,6 +40,15 @@ Static text is written twice, `<span data-l="en">…</span><span data-l="vi">…
 built in JavaScript uses `i18n.t({ en, vi })`. The check fails if a page doesn't load the language
 system or if a journal entry is missing either language.
 
+### The shared pet
+Besides each visitor's own pet (localStorage), everyone raises one shared pet together through
+`/api/world`, a Cloudflare Pages Function (`functions/api/world.js`, logic in `lib/world.js`)
+backed by a D1 database that `scripts/deploy.sh` creates on the first deploy. The AI cannot touch
+the backend; it only declares which shared actions exist in `site/shared/actions.json`.
+Anti-spam: same-origin POSTs only, per-visitor cooldown per action, max 30 actions per minute;
+visitors are identified only by a salted, daily-rotating hash of their IP.
+The API token needs **Account → D1 → Edit** in addition to Cloudflare Pages → Edit.
+
 ### Security
 `site/_headers` sets a `default-src 'self'` Content-Security-Policy on Cloudflare, so the site
 cannot load anything from outside, even if the AI tries to.
@@ -53,7 +62,7 @@ Everything is automated except adding secrets. Under **Settings → Secrets and 
 | Secret | Where to get it |
 |---|---|
 | `CLAUDE_CODE_OAUTH_TOKEN` | Run `claude setup-token` on your machine (install Claude Code from https://code.claude.com) |
-| `CLOUDFLARE_API_TOKEN` | Cloudflare dashboard → My Profile → API Tokens → Create token, with **Account → Cloudflare Pages → Edit** |
+| `CLOUDFLARE_API_TOKEN` | Cloudflare dashboard → My Profile → API Tokens → Create token, with **Account → Cloudflare Pages → Edit** and **Account → D1 → Edit** |
 | `CLOUDFLARE_ACCOUNT_ID` | Cloudflare dashboard → the account ID shown on the account home / Workers & Pages overview |
 
 Then:

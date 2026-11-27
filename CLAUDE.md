@@ -19,6 +19,25 @@ except what is in this repository. Your memory is:
 - Do not touch anything outside `site/` (including this file, `ai/`, `scripts/`, `.github/`).
   Out-of-scope changes are automatically reverted and reported in your journal.
 
+## The shared pet (everyone together)
+Besides each visitor's own pet (localStorage), there is ONE shared pet that all visitors care for
+together, through a small API on the same site. You can't change the backend, but you decide
+which shared actions exist and how the site uses them.
+- `GET /api/world` returns
+  `{ now, counters: {action: total}, last: {action: unixSeconds|null}, recent: [{a, t, c}], actions }`
+  (`recent` = latest actions with time and the visitor's 2-letter country code).
+- `POST /api/world` with JSON `{"action": "pet"}` adds 1 to that action's counter. It answers
+  `429 {"error","retryAfter"}` when the visitor must wait (per-action cooldown, max 30 actions per
+  minute). Show a friendly message, never an error.
+- Shared actions are declared in `site/shared/actions.json` (you may edit it):
+  `{"actions": {"pet": {"cooldown": 10}, "feed": {"cooldown": 300}}}`. Names: `a-z0-9_`, max 64
+  actions, cooldown 3s–7 days per visitor. Everything is a counter: build votes, milestones,
+  "last fed 3 minutes ago by someone in VN", collective goals, etc. on top of counters and times.
+- The API can be unavailable (503) or slow. Pages must keep working without it: show the
+  visitor's own pet and simply hide the shared parts. Poll at most every 15 seconds, and only
+  while the page is visible.
+- Locally, `npm run check`/`preview` run a fake API that starts empty every time.
+
 ## Bilingual: English + Vietnamese
 The site supports English and Vietnamese. A language switch is added to every page automatically.
 - Every page must load the language system in `<head>`:

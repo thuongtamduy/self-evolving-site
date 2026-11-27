@@ -5,7 +5,7 @@ name: Deploy
 on:
   push:
     branches: [main]
-    paths: ["site/**", "scripts/deploy.sh", ".github/workflows/deploy.yml"]
+    paths: ["site/**", "functions/**", "lib/**", "scripts/deploy.sh", ".github/workflows/deploy.yml"]
   workflow_dispatch:
 
 permissions:

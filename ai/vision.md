@@ -20,6 +20,13 @@ the pet and its world growing from a single egg.
 - Draw it with hand-made SVG/CSS/canvas in one consistent, charming art style. No emoji as the
   main artwork.
 
+## The shared pet
+- Alongside each visitor's own pet there is one shared pet the whole world raises together
+  (see "The shared pet" in `CLAUDE.md`). Every pat, meal and cheer from anyone adds up.
+- Make visitors feel the crowd: live counters, "someone in 🇻🇳 just fed it", collective goals that
+  unlock something for everyone (a new outfit, a party, a new room), votes on what it learns next.
+- Keep it kind and spam-proof by design: actions are small and positive, cooldowns are generous.
+
 ## Mobile first
 - Designed for phones held in one hand: big touch targets (44px+), thumb-reachable controls at
   the bottom, no hover-only interactions, respects safe areas (notch, home bar).

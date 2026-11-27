@@ -2,6 +2,7 @@
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
+import { handleWorld, memoryStore, parseActions } from "../lib/world.js";
 
 export const SITE = path.resolve("site");
 
@@ -40,16 +41,40 @@ export function resolveFile(urlPath) {
   return fs.existsSync(file) && fs.statSync(file).isFile() ? file : null;
 }
 
+function readActions() {
+  try { return parseActions(JSON.parse(fs.readFileSync(path.join(SITE, "shared", "actions.json"), "utf8"))); }
+  catch { return {}; }
+}
+
+// Same API as the Cloudflare Pages Function, backed by memory (fresh for every server)
+async function api(req, res, store, base) {
+  const chunks = [];
+  for await (const c of req) chunks.push(c);
+  const request = new Request(base + req.url, {
+    method: req.method, headers: req.headers, body: ["GET", "HEAD"].includes(req.method) ? undefined : Buffer.concat(chunks),
+  });
+  const response = await handleWorld(request, store, readActions(), { ip: req.socket.remoteAddress, country: "VN" });
+  res.writeHead(response.status, Object.fromEntries(response.headers));
+  res.end(Buffer.from(await response.arrayBuffer()));
+}
+
 export function startServer() {
   const headers = readHeaders();
+  const store = memoryStore();
+  let base = "";
   const server = http.createServer((req, res) => {
+    if (req.url.split("?")[0] === "/api/world") {
+      api(req, res, store, base).catch((e) => { res.writeHead(500); res.end(String(e)); });
+      return;
+    }
     const file = resolveFile(req.url);
     if (!file) { res.writeHead(404, { "content-type": "text/plain" }); res.end("404"); return; }
     res.writeHead(200, { ...headers, "content-type": TYPES[path.extname(file).toLowerCase()] || "application/octet-stream" });
     fs.createReadStream(file).pipe(res);
   });
   return new Promise((ok) => server.listen(0, "127.0.0.1", () => {
-    ok({ server, url: `http://127.0.0.1:${server.address().port}` });
+    base = `http://127.0.0.1:${server.address().port}`;
+    ok({ server, url: base });
   }));
 }
 
