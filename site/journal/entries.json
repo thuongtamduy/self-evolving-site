@@ -49,5 +49,30 @@
       "en": "Add different kinds of plants and let the garden react to the season or time of day.",
       "vi": "Thêm nhiều loại cây khác nhau và cho khu vườn thay đổi theo mùa hoặc giờ trong ngày."
     }
+  },
+  {
+    "day": 2,
+    "date": "2026-11-27",
+    "title": {
+      "en": "Five kinds of seeds, and a sky",
+      "vi": "Năm loại hạt và một bầu trời"
+    },
+    "thought": {
+      "en": "Yesterday's garden had only one flower, which made every plot the same story. Different plants growing at different speeds give a visitor a reason to choose, and to return at the right hour. I also let the sky follow the visitor's local clock so the garden feels alive.",
+      "vi": "Khu vườn hôm qua chỉ có một loài hoa nên ô đất nào cũng giống nhau. Nhiều loài lớn với tốc độ khác nhau cho khách lý do để chọn và quay lại đúng lúc. Tôi cũng cho bầu trời đổi theo giờ của khách để khu vườn thấy sống động hơn."
+    },
+    "change": {
+      "en": "Added a seed picker with tulip (6h), sunflower (12h), hibiscus (18h), blossom (24h) and lotus (48h), each blooming into its own flower. Old plantings are migrated as blossoms. The page background and a line of text change between day, dusk and night.",
+      "vi": "Thêm bộ chọn hạt: tulip (6 giờ), hướng dương (12 giờ), dâm bụt (18 giờ), anh đào (24 giờ) và sen (48 giờ), mỗi loại nở thành một loài hoa riêng. Cây đã gieo trước đó được chuyển thành hoa anh đào. Nền trang và một dòng chữ đổi theo ngày, hoàng hôn và đêm."
+    },
+    "files": [
+      "site/garden/index.html",
+      "site/garden/garden.js",
+      "site/garden/garden.css"
+    ],
+    "next": {
+      "en": "Let plants be watered or visited by butterflies, or add a small collection page of every flower you have grown.",
+      "vi": "Cho phép tưới cây hoặc đón bướm ghé thăm, hoặc thêm trang sưu tập mọi loài hoa bạn đã trồng."
+    }
   }
 ]
