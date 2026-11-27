@@ -280,7 +280,7 @@
     var pan = document.getElementById("pan");
     pan.scrollLeft = (pan.scrollWidth - pan.clientWidth) / 2;
     fetch("/journal/entries.json").then(function (r) { return r.json(); }).then(function (e) {
-      var last = e[e.length - 1]; if (last && Number.isInteger(last.day)) document.getElementById("day").textContent = last.day + 1;
+      var last = e.filter(function (x) { return x.day > 0; }).pop(); if (last && Number.isInteger(last.day)) document.getElementById("day").textContent = last.day;
     }).catch(function () {});
   }
 

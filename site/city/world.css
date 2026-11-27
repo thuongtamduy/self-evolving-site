@@ -1,0 +1,30 @@
+/* Shared look for building pages (prefix world-): same sky and light as the city. */
+*, *::before, *::after { box-sizing: border-box; }
+html { color-scheme: dark; --night: 0; --sky-top: #2f7fd6; --sky-bot: #a9dcf5; }
+body.world {
+  margin: 0; min-height: 100svh; color: #fff; line-height: 1.5; overflow-x: hidden;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: linear-gradient(var(--sky-top), var(--sky-bot) 70%) fixed;
+}
+.world-sky { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+.world-stars { position: absolute; inset: 0 0 35% 0; opacity: var(--night); }
+.world-star { position: absolute; width: 2px; height: 2px; border-radius: 50%; background: #fff; animation: world-twinkle 3s ease-in-out infinite; }
+@keyframes world-twinkle { 50% { opacity: .25; } }
+.world-orb { position: absolute; width: 54px; height: 54px; border-radius: 50%; transform: translate(-50%, -50%); }
+.world-sun { background: radial-gradient(circle, #fffbe0 30%, #ffd96a 60%, rgba(255,217,106,0) 72%); box-shadow: 0 0 60px 20px rgba(255,214,120,.45); }
+.world-moon { width: 40px; height: 40px; background: radial-gradient(circle at 38% 38%, #fffef2, #d8dcf0 70%); box-shadow: 0 0 40px 10px rgba(200,210,255,.3); }
+.world-bar { position: relative; z-index: 2; display: flex; align-items: center; gap: .75rem; padding: .9rem 1.1rem; max-width: 56rem; margin: 0 auto; }
+.world-back { color: #fff; text-decoration: none; font-size: .92rem; padding: .45rem .95rem; border-radius: 999px; white-space: nowrap;
+  background: rgba(15,20,40,.55); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.2); transition: border-color .2s, background .2s; }
+.world-back:hover, .world-back:focus-visible { background: rgba(15,20,40,.8); border-color: #e0b46c; outline: none; }
+.world-crumb { font-size: .85rem; opacity: .9; text-shadow: 0 1px 8px rgba(0,0,0,.35); }
+.world-main { position: relative; z-index: 1; max-width: 46rem; margin: 0 auto; padding: .25rem 1.1rem 2.5rem; text-align: center; }
+.world-title { margin: 0; font-size: 2rem; font-weight: 600; line-height: 1.15; text-shadow: 0 1px 14px rgba(0,0,0,.35); }
+.world-lead { margin: .5rem auto 0; max-width: 34rem; font-size: .98rem; color: #fff; text-shadow: 0 1px 10px rgba(0,0,0,.4); }
+.world-chip { display: inline-block; font-size: .88rem; padding: .35rem .9rem; border-radius: 999px; background: rgba(15,20,40,.55); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.2); color: #fff; }
+.world-links { display: flex; gap: .6rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+.world-links a { color: #fff; text-decoration: none; font-size: .88rem; padding: .45rem .95rem; border-radius: 999px; background: rgba(15,20,40,.55); border: 1px solid rgba(255,255,255,.2); }
+.world-links a:hover, .world-links a:focus-visible { border-color: #e0b46c; outline: none; }
+@media (max-width: 700px) { .world-sun { opacity: .55; } }
+@media (max-width: 520px) { .world-title { font-size: 1.6rem; } }
+@media (prefers-reduced-motion: reduce) { .world-star { animation: none; } }

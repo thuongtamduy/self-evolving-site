@@ -1,32 +1,21 @@
-.garden-page { max-width: 36rem; margin: 0 auto; padding: 8vh 1.25rem 4rem; text-align: center; }
-.garden-sky { font-size: .95rem; margin: 1rem 0 0; color: #a9b5ae; }
-.garden-seeds { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: 1.25rem 0 0; }
+/* The Garden: uses the shared world look (/city/world.css). Prefix garden- */
+.garden-stage { margin: .75rem auto 0; max-width: 40rem; filter: brightness(calc(1 - var(--night) * .5)) saturate(calc(1 - var(--night) * .2)); }
+.garden-svg { display: block; width: 100%; height: auto; overflow: visible; }
+.garden-cell { cursor: pointer; outline: none; }
+.garden-cell .garden-hl { opacity: 0; transition: opacity .2s; }
+.garden-cell:hover .garden-hl, .garden-cell:focus-visible .garden-hl { opacity: 1; }
+.garden-sway { transform-box: fill-box; transform-origin: 50% 100%; animation: garden-sway 4s ease-in-out infinite; }
+@keyframes garden-sway { 50% { transform: rotate(2.5deg); } }
+.garden-seeds { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin: 1rem 0 0; }
 .garden-seed {
-  display: inline-flex; align-items: center; gap: .4rem; cursor: pointer; font: inherit; font-size: .9rem;
-  background: rgba(42,33,25,.7); border: 1px solid #4a3a2a; border-radius: 999px; color: #d9e2dc;
+  display: inline-flex; align-items: center; gap: .45rem; cursor: pointer; font: inherit; font-size: .9rem; color: #fff;
+  background: rgba(15,20,40,.55); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,.2); border-radius: 999px;
   padding: .4rem .85rem; white-space: nowrap; transition: border-color .2s, background .2s;
 }
-.garden-seed:hover, .garden-seed:focus-visible { border-color: #c9a46a; outline: none; }
-.garden-seed.on { border-color: #c9a46a; background: #3b2e20; color: #fff; }
-.garden-seed-h { color: #c9a46a; font-size: .8rem; }
-.garden-plots {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: .6rem; margin: 1.75rem 0 1rem;
-  padding: .9rem; border-radius: 18px; background: linear-gradient(#2b2118, #1d160f); border: 1px solid #3a2d1f;
-}
-.garden-plot {
-  aspect-ratio: 1; font-size: 2rem; cursor: pointer; padding: 0; position: relative;
-  background: radial-gradient(ellipse at 50% 60%, #3a2c1f, #2a2018 75%); border: 1px solid #4a3a2a; border-radius: 14px;
-  color: #d9e2dc; display: flex; align-items: center; justify-content: center;
-  transition: transform .15s, border-color .2s;
-}
-.garden-plot:hover, .garden-plot:focus-visible { transform: translateY(-2px); border-color: #c9a46a; outline: none; }
-.garden-empty { background: rgba(0,0,0,.18); border: 1px dashed #4a3a2a; }
-.garden-mound { width: 46%; height: 22%; border-radius: 50%; background: radial-gradient(ellipse at 50% 30%, #4a3826, #2f2418); box-shadow: 0 2px 0 rgba(0,0,0,.3); opacity: .8; }
-.garden-bean { width: 14px; height: 19px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: #c9a46a; box-shadow: 0 0 14px rgba(201,164,106,.35); }
-.garden-status { min-height: 1.6em; font-size: .95rem; }
-@media (prefers-reduced-motion: reduce) { .garden-plot, .garden-seed { transition: none; } }
-@media (max-width: 420px) { .garden-plots { gap: .4rem; padding: .6rem; } .garden-plot { font-size: 1.6rem; } }
-body.sky-day { background-image: linear-gradient(#1f2a24, #14110d 60%); }
-body.sky-dusk { background-image: linear-gradient(#3a2a1c, #14110d 60%); }
-body.sky-night { background-image: linear-gradient(#0d1220, #0b0a0a 60%); }
-.garden-lead { font-size: 1rem; color: #e6ede8; }
+.garden-seed:hover, .garden-seed:focus-visible { border-color: #e0b46c; outline: none; }
+.garden-seed.on { border-color: #e0b46c; background: rgba(15,20,40,.85); }
+.garden-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid rgba(255,255,255,.85); }
+.garden-seed-h { color: #f0d9a8; font-size: .8rem; }
+.garden-status { margin: 1rem 0 0; min-height: 2rem; }
+.garden-sky { margin: .6rem 0 0; font-size: .85rem; color: #fff; opacity: .85; text-shadow: 0 1px 8px rgba(0,0,0,.4); }
+@media (prefers-reduced-motion: reduce) { .garden-sway { animation: none; } .garden-seed { transition: none; } }
