@@ -6,7 +6,7 @@ set -euo pipefail
 
 PROJECT="${PAGES_PROJECT:-growsdaily}"
 DB_NAME="${D1_NAME:-growsdaily-db}"
-WRANGLER="npx --yes wrangler@4"
+WRANGLER="${WRANGLER:-npx --yes wrangler@4}"
 
 if [[ -z "${CLOUDFLARE_API_TOKEN:-}" || -z "${CLOUDFLARE_ACCOUNT_ID:-}" ]]; then
   echo "::warning::CLOUDFLARE_API_TOKEN / CLOUDFLARE_ACCOUNT_ID secrets are not set, skipping deploy."
@@ -45,7 +45,7 @@ else
 fi
 
 # 2. D1 database for the shared pet (optional: without it the site still works, the API answers 503)
-db_id() { $WRANGLER d1 list --json 2>/dev/null | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{const d=JSON.parse(s).find(x=>x.name===process.argv[1]);console.log(d?(d.uuid||d.id||""):"")}catch{console.log("")}})' "$DB_NAME"; }
+db_id() { { $WRANGLER d1 list --json 2>/dev/null || echo "[]"; } | node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{try{const d=JSON.parse(s).find(x=>x.name===process.argv[1]);console.log(d?(d.uuid||d.id||""):"")}catch{console.log("")}})' "$DB_NAME"; }
 DB_ID="$(db_id)"
 if [[ -z "$DB_ID" ]]; then
   echo "Creating D1 database \"$DB_NAME\"…"
@@ -56,7 +56,14 @@ fi
 rm -f wrangler.toml
 if [[ -n "$DB_ID" ]]; then
   node -e 'import("./lib/world.js").then(m=>process.stdout.write(m.SCHEMA.join(";\n")+";\n"))' > /tmp/schema.sql
-  $WRANGLER d1 execute "$DB_NAME" --remote --file /tmp/schema.sql >/dev/null
+  if ! $WRANGLER d1 execute "$DB_NAME" --remote --file /tmp/schema.sql >/tmp/d1.log 2>&1; then
+    cat /tmp/d1.log
+    echo "::warning::Could not create the tables in D1. Deploying without the shared pet."
+    DB_ID=""
+  fi
+fi
+
+if [[ -n "$DB_ID" ]]; then
   echo "D1 database \"$DB_NAME\" ready."
   cat > wrangler.toml <<EOF
 name = "$PROJECT"
